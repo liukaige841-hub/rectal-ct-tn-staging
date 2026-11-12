@@ -1,0 +1,30 @@
+weights:
+  segmentation: null
+  T: null
+  N: null
+segmentation:
+  config: configs/segmentation.yaml
+  image_size: 256
+  base: 32
+  window_center: 50
+  window_width: 350
+  threshold: 0.5
+  threshold_rule: strict_greater_than
+  batch_size: 32
+postprocess:
+  gap: 2
+  margin: 2
+  min_area: 20
+roi:
+  image_size: 224
+  neighbor_slices: 1
+  bbox_window: 8
+  margin_ratio: 0.4
+classification:
+  T_config: configs/T_staging.yaml
+  N_config: configs/N_staging.yaml
+  T_threshold: 0.5
+  N_threshold: 0.5
+  threshold_rule: greater_than_or_equal
+runtime:
+  device: auto

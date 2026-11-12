@@ -1,0 +1,32 @@
+model:
+  name: SEG-2D-UNET
+  in_channels: 1
+  out_channels: 1
+  base: 32
+data:
+  image_size: 256
+  window_center: 50
+  window_width: 350
+  threshold: 0.5
+  threshold_rule: strict_greater_than
+  negative_margin_slices: 60
+train:
+  index_csv: data/segmentation_index.csv
+  hard_negative_csv: null
+  output_dir: outputs/segmentation
+  epochs: 60
+  batch_size: 32
+  optimizer: Adam
+  lr: 0.0003
+  patience: 10
+  seed: 42
+  neg_frac: 1.0
+  hard_neg_weight: 2.0
+  loss: weighted_BCE_plus_soft_Dice
+  best_metric: val_dice_pos
+  amp: true
+  num_workers: 0
+postprocess:
+  gap: 2
+  margin: 2
+  min_area: 20

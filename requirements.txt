@@ -1,0 +1,10 @@
+torch
+torchvision
+numpy
+pandas
+Pillow
+PyYAML
+nibabel
+pydicom
+scipy
+scikit-learn

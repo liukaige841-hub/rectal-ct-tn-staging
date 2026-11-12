@@ -1,0 +1,37 @@
+model:
+  name: T-BIN-AUTO
+  backbone: resnet152
+  dual_branch: true
+  pretrained: true
+num_classes: 2
+task: T
+positive_class: T_ge_3
+classification:
+  threshold: 0.5
+  threshold_rule: greater_than_or_equal
+data:
+  labels_csv: data/classification_labels.csv
+  image_col: image_path
+  label_col: label
+  sample_id_col: sample_id
+  image_size: 224
+  in_channels: 3
+  neighbor_slices: 1
+  bbox_window: 8
+  margin_ratio: 0.4
+train:
+  output_dir: outputs/T-BIN-AUTO
+  batch_size: 32
+  optimizer: Adam
+  lr: 0.00002
+  weight_decay: 0.0001
+  scheduler: CosineAnnealingLR
+  epochs: 100
+  early_stop_patience: 15
+  min_epochs: 10
+  amp: true
+  balanced_sampler: true
+  class_weight: false
+  label_smoothing: 0.1
+  seed: 42
+  num_workers: 0
